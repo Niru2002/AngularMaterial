@@ -3,23 +3,50 @@
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form">
     <mat-form-field>
       <mat-label>First Name</mat-label>
-      <input formControlName="firstName" matInput required/>
+      <input formControlName="firstName" matInput required />
+      <mat-error *ngIf="userForm.get('firstName')!.invalid && userForm.get('firstName')!.touched">
+        Please enter a valid first name
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Last Name</mat-label>
       <input formControlName="lastName" matInput required />
+      <mat-error *ngIf="userForm.get('lastName')!.invalid && userForm.get('lastName')!.touched">
+        Please enter a valid Last name
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input formControlName="email" matInput required email/>
+      <input formControlName="email" matInput required email />
+      <mat-error *ngIf="userForm.get('email')!.invalid && userForm.get('email')!.touched">
+        Please enter a valid email
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Address</mat-label>
       <textarea formControlName="address" matInput></textarea>
+      <mat-error *ngIf="userForm.get('address')!.invalid && userForm.get('address')!.touched">
+        Please enter a valid address
+      </mat-error>
     </mat-form-field>
     <div>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">{{isEditMode? 'Update':'Submit'}}</button>
-      <button mat-raised-button color="warn" type="button" (click)="onDelete()" *ngIf="isEditMode">Delete</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!userForm.valid"
+      >
+        {{ isEditMode ? "Update" : "Submit" }}
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="onDelete()"
+        *ngIf="isEditMode"
+      >
+        Delete
+      </button>
       <button mat-raised-button color="warn" type="button" (click)="onClear()">
         Clear
       </button>
